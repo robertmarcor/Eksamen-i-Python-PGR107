@@ -1,4 +1,14 @@
 Task1/__pycache__/
-Task2/__pycache__/
+Task2/__pycache__/ 
 Task3/__pycache__/
 Task4/__pycache__/
+
+# Python
+**/__pycache__/*.pyc
+
+# Environment variables
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
