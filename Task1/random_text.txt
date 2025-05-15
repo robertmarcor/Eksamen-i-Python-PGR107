@@ -1,0 +1,13 @@
+bulbasaur
+ivysaur
+venusaur
+charmander
+charmeleon
+charizard
+squirtle
+wartortle
+blastoise
+pikachu
+raichu
+mewtwo
+mew
