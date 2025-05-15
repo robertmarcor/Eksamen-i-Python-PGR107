@@ -1,5 +1,6 @@
 class Library:
-    list_of_books = []
+    def __init__(self):
+        self.list_of_books = []
 
     def add_book(self, book):
         self.list_of_books.append(book)
