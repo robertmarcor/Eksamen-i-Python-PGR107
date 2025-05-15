@@ -1,53 +1,95 @@
 class Library:
     list_of_books = []
-    checked_in_books = []
-    checked_out_books = []
 
     def add_book(self, book):
-        print(f"Adding book: {book}")
         self.list_of_books.append(book)
 
     def remove_book(self, title):
-        print(f"Removing book: {title}")
-        self.list_of_books.remove(title)
+        for book in self.list_of_books:
+            if book.title == title:
+                self.list_of_books.remove(book)
+                print(f"\n✓ Book '{title}' has been removed from the library")
+                return
+        print(f"\n❌ Book '{title}' not found in library")
 
-    def check_in(self, title):
-        print(f"Checking in book: {title}")
-        self.checked_in_books.append(title)
+    def check_in(self, book):
+        book.status = True
 
-    def check_out(self, title):
-        print(f"Checking out book: {title}")
-        self.checked_out_books.append(title)
+    def checkin_book(self, title):
+        for book in self.list_of_books:
+            if book.title == title:
+                self.check_in(book)
+                print(f"\n✓ Book '{title}' has been returned to the library")
+                return
+        print(f"\n❌ Book '{title}' not found in library")
+
+    def check_out(self, book):
+        book.status = False
+
+    def checkout_book(self, title):
+        for book in self.list_of_books:
+            if book.title == title:
+                self.check_out(book)
+                print(f"\n✓ Book '{title}' has been checked out successfully")
+                return
+        print(f"\n❌ Book '{title}' not found in library")
         
-    """ Extra functions """
+        
+    """ 
+    Extra functions
+    mostly for display purposes
+    """
     def list_checked_in_books(self):
-        # Checked in books
-        print("=== Books checked in ===")
-        if(len(self.checked_in_books) > 0):
-            for book in self.checked_in_books:
-                print(book)
-        else:
-            print("No books checked in")
-        print("--------------------------------")        
+        # Books available for loan
+        print("\n═════════════════════════════════════")
+        print("       BOOKS AVAILABLE FOR LOAN       ")
+        print("═════════════════════════════════════")
         
-    def list_checked_out_books(self):
-        # Checked out books
-        print("=== Books checked out ===")
-        if(len(self.checked_out_books) > 0):
-            for book in self.checked_out_books:
-                print(book)
+        checked_in = []
+        for book in self.list_of_books:
+            if book.status:
+                checked_in.append(book)
+                
+        if checked_in:
+            for i, book in enumerate(checked_in, 1):
+                print(f"{i}. {book}")
+            print("\nEnter the number of the book you want to select")
         else:
-            print("No books checked out")
-        print("--------------------------------")
+            print("No books available for loan at this time")
+        print("─────────────────────────────────────")
+        return checked_in
+    
+    def list_checked_out_books(self):
+        # Books currently checked out
+        print("\n═════════════════════════════════════")
+        print("        BOOKS CURRENTLY ON LOAN       ")
+        print("═════════════════════════════════════")
+        
+        checked_out = []
+        for book in self.list_of_books:
+            if not book.status:
+                checked_out.append(book)
+                
+        if checked_out:
+            for i, book in enumerate(checked_out, 1):
+                print(f"{i}. {book}")
+            print("\nEnter the number of the book you want to return")
+        else:
+            print("No books are currently checked out")
+        print("─────────────────────────────────────")
+        return checked_out
     
     def list_all_books(self):
-        print("=== Books in library ===")
-        for book in self.list_of_books:
-            print(book)
-        print("--------------------------------")
-    
-
+        print("\n═════════════════════════════════════")
+        print("      COMPLETE LIBRARY INVENTORY      ")
+        print("═════════════════════════════════════")
         
-
-    
+        if self.list_of_books:
+            for i, book in enumerate(self.list_of_books, 1):
+                status = "📗 Available" if book.status else "📕 Checked out"
+                print(f"{i}. {book} - {status}")
+        else:
+            print("The library is currently empty")
+        print("─────────────────────────────────────")
+  
         
