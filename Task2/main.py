@@ -27,15 +27,14 @@ Main Program:
     handles some validation and uses indexing to select books from the list to remove the need for typing out the title.
     
     has nice ascii menus and "fake" inputs/loading screens to make the program feel more interactive :)
+    
+    has a automatic test option per task requirement
 """
 from Library import Library
 from Book import Book
-import os
 import time
-
-def clear_screen():
-    """Clear the terminal screen"""
-    os.system('cls' if os.name == 'nt' else 'clear')
+from test_script import test_script
+from utils import clear_screen
 
 def add_all_books(library):
     """Add all books to the library"""
@@ -159,7 +158,10 @@ def handle_menu_choice(library, choice):
     elif choice == 4: # List all books
         view_all_books_menu(library)
         return False
-    elif choice == 5: # Exit
+    elif choice == 5: # Test Program automatically
+        test_script()
+        return False
+    elif choice == 6: # Exit
         print("\nThank you for using the Library Management System!")
         return True
     else:
@@ -192,7 +194,8 @@ if __name__ == "__main__":
         print("2. 📕 Return a book")
         print("3. 🗑️  Remove a book from library")
         print("4. 📚 View all books")
-        print("5. 👋 Exit")
+        print("5. 🤖 Test Program automatically")
+        print("6. 👋 Exit")
         
         try:
             choice = int(input("\nEnter your choice (1-5): "))
