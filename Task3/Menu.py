@@ -68,12 +68,6 @@ class Menu:
           ACCOUNT BALANCE            
 ═════════════════════════════════════
 """
-        elif operation == "exit":
-            header = """
-═════════════════════════════════════
-THANK YOU FOR USING THE BANKING SYSTEM 
-═════════════════════════════════════
-"""
         elif operation == "error":
             header = """
 ═════════════════════════════════════
@@ -218,7 +212,6 @@ THANK YOU FOR USING THE BANKING SYSTEM
         return account
     
     def exit_menu(self):
-        self.display_header("exit")
         print("Thank you for using the Bank Account Management System!")
         return False
         
